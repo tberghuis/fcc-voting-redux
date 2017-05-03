@@ -1,0 +1,6 @@
+.env
+.env.prod
+# node_modules needed for deployment???
+node_modules
+notes.txt
+/tmp
