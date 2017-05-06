@@ -6,3 +6,8 @@ tech: react, react-router, redux, express, mongoose, jwt, social login
 
 TODO running instructions
 
+borrowed code from realworld.io projects
+https://github.com/gothinkster/react-redux-realworld-example-app
+https://github.com/gothinkster/node-express-realworld-example-app
+
+

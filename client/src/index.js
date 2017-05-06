@@ -1,3 +1,4 @@
+// require('dotenv').config(); 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -7,15 +8,10 @@ import Login from './components/Login';
 
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
+import 'normalize.css';
 
-
-import './index.css';
-
-// ReactDOM.render(
-//   <App />,
-//   document.getElementById('root')
-// );
-
+console.log(process.env.REACT_APP_SECRET);
+// console.log(process.env.SECRET);
 
 
 ReactDOM.render(
