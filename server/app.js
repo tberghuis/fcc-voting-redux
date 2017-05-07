@@ -23,10 +23,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //app.use(require('method-override')());
-//app.use(express.static(__dirname + '/public'));
-
-//console.log('SECRET',process.env.SESSION_SECRET);
-// study what the options do....
 
 // this session shit is not even relevant...
 // ok, post a bug report asking why it exists?
@@ -53,8 +49,6 @@ const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 const userRoutes = require('./routes/user');
 app.use('/user', userRoutes);
-
-
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -26,34 +26,14 @@ router.post('/login', function(req, res, next){
 });
 
 router.post('/register', function(req, res, next){
-  
-  console.log(req);
-  
-  
+  // console.log(req);
   var user = new User();
-
-
-
-
   user.username = req.body.user.username;
   user.email = req.body.user.email;
   user.setPassword(req.body.user.password);
-
   user.save().then(function(){
     return res.json({user: user.toAuthJSON()});
   }).catch(next);
 });
 
 module.exports = router;
-
-
-
-// router.get('/login/facebook',
-//   passport.authenticate('facebook'));
-
-// router.get('/login/facebook/return', 
-//   passport.authenticate('facebook', { failureRedirect: '/login' }),
-//   function(req, res) {
-//     res.redirect('/');
-//   });
-
