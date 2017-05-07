@@ -26,7 +26,14 @@ router.post('/login', function(req, res, next){
 });
 
 router.post('/register', function(req, res, next){
+  
+  console.log(req);
+  
+  
   var user = new User();
+
+
+
 
   user.username = req.body.user.username;
   user.email = req.body.user.email;
