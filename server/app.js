@@ -32,6 +32,7 @@ if (!isProduction) {
   app.use(errorhandler());
 }
 
+mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 // if (!isProduction) {
 //   // mongoose.set('debug', true);
