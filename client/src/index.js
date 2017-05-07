@@ -12,10 +12,6 @@ import Register from './components/Register';
 
 import 'normalize.css';
 
-// console.log(process.env.REACT_APP_SECRET);
-// console.log(process.env.SECRET);
-
-
 ReactDOM.render(
   (
     <Provider store={store}>
@@ -30,5 +26,3 @@ ReactDOM.render(
   ),
   document.getElementById('root')
 );
-
-
