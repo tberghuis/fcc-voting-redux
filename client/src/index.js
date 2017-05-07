@@ -10,7 +10,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 
-import 'normalize.css';
+// import 'normalize.css';
 
 ReactDOM.render(
   (

@@ -1,30 +1,54 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
 
 class Header extends React.Component {
     render() {
         return (
-            <nav className="navbar navbar-light">
-                <div className="container">
-                    FCC Voting Redux
-                    {/*<Link to="/" className="navbar-brand">
-                        {this.props.appName.toLowerCase()}
-                    </Link>*/}
+            <Navbar>
+                <Navbar.Header>
+                    <Navbar.Brand>
+                        FCC Voting Redux
+                    </Navbar.Brand>
+                </Navbar.Header>
 
-                    <ul className="nav navbar-nav pull-xs-right">
+                <Nav>
+                    <NavItem>All Polls</NavItem>
+                    <NavItem>Link</NavItem>
+                    <NavItem>
+                        <Link to="login">
+                            Sign in
+                        </Link>
+                    </NavItem>
+                </Nav>
 
-                        <li className="nav-item">
-                            <Link to="login" className="nav-link">
-                                Sign in
-                            </Link>
-                        </li>
 
-                    </ul>
-                </div>
-            </nav>
+            </Navbar>
         );
     }
 }
 
 export default Header;
+
+
+/*const navbarInstance = (
+  <Navbar>
+    <Navbar.Header>
+      <Navbar.Brand>
+        <a href="#">React-Bootstrap</a>
+      </Navbar.Brand>
+    </Navbar.Header>
+    <Nav>
+      <NavItem eventKey={1} href="#">Link</NavItem>
+      <NavItem eventKey={2} href="#">Link</NavItem>
+      <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+        <MenuItem eventKey={3.1}>Action</MenuItem>
+        <MenuItem eventKey={3.2}>Another action</MenuItem>
+        <MenuItem eventKey={3.3}>Something else here</MenuItem>
+        <MenuItem divider />
+        <MenuItem eventKey={3.4}>Separated link</MenuItem>
+      </NavDropdown>
+    </Nav>
+  </Navbar>
+);*/
