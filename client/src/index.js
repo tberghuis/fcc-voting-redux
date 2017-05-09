@@ -5,6 +5,9 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import store from './store';
 
+// in console run _state()
+window._state = store.getState;
+
 import App from './App';
 import Home from './components/Home';
 import Login from './components/Login';
