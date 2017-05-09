@@ -9,7 +9,8 @@ const getMiddleware = () => {
         return applyMiddleware(promiseMiddleware, localStorageMiddleware);
     } else {
         // Enable additional logging in non-production environments.
-        return composeWithDevTools(applyMiddleware(promiseMiddleware, localStorageMiddleware, logger));
+        // return composeWithDevTools(applyMiddleware(promiseMiddleware, localStorageMiddleware, logger));
+        return composeWithDevTools(applyMiddleware(promiseMiddleware, localStorageMiddleware));
     }
 }
 

@@ -8,8 +8,10 @@ export const REGISTER = 'REGISTER';
 export const REGISTER_PAGE_UNLOADED = 'REGISTER_PAGE_UNLOADED';
 export const UPDATE_FIELD_AUTH = 'UPDATE_FIELD_AUTH';
 
+export const REDIRECT = 'REDIRECT';
+
 // export const APP_LOAD = 'APP_LOAD';
-// export const REDIRECT = 'REDIRECT';
+
 // export const ARTICLE_SUBMITTED = 'ARTICLE_SUBMITTED';
 // export const SETTINGS_SAVED = 'SETTINGS_SAVED';
 // export const DELETE_ARTICLE = 'DELETE_ARTICLE';

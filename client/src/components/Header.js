@@ -1,14 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router';
-// import RaisedButton from 'material-ui/RaisedButton';
+import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
+import FlatButton from 'material-ui/FlatButton';
+
 
 class Header extends React.Component {
     render() {
         return (
-            <div>
-                header component
-                start with material ui Toolbar
-            </div>
+            <Toolbar>
+                <ToolbarGroup firstChild={true}>
+                    <FlatButton label="All Polls" />
+                    <FlatButton label="My Polls" />
+                </ToolbarGroup>
+                <ToolbarGroup>
+                    <FlatButton label="Login" containerElement={<Link to="/login"/>} />
+                    <FlatButton label="Register" containerElement={<Link to="/register"/>} />
+                </ToolbarGroup>
+            </Toolbar>
         );
     }
 }
