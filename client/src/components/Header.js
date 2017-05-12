@@ -29,6 +29,9 @@ class Header extends React.Component {
                 <ToolbarGroup firstChild={true}>
                     <FlatButton label="All Polls" />
                     <FlatButton label="My Polls" />
+                    {this.props.loggedIn &&
+                        <FlatButton label="Create Poll" containerElement={<Link to="/createpoll" />} />
+                    }
                 </ToolbarGroup>
                 <ToolbarGroup>
                     {!this.props.loggedIn &&
