@@ -1,5 +1,5 @@
 import { applyMiddleware, createStore } from 'redux';
-import logger from 'redux-logger'
+// import logger from 'redux-logger'
 import { promiseMiddleware, localStorageMiddleware } from './middleware';
 import reducer from './reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';

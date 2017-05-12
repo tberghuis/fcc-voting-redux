@@ -3,8 +3,6 @@
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 
 // TODO figure out why react warning for textfield type email and password
 

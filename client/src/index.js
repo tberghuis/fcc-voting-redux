@@ -11,8 +11,8 @@ window._state = store.getState;
 import App from './App';
 import Home from './components/Home';
 import Login from './components/Login';
-import Register from './components/Register';
-import CreatePoll from './components/CreatePoll';
+// import Register from './components/Register';
+// import CreatePoll from './components/CreatePoll';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -20,10 +20,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-
-// ?????
-// import 'normalize.css';
-import './style.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 function requireAuth(nextState, replace) {
@@ -42,8 +39,8 @@ ReactDOM.render(
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
           <Route path="login" component={Login} />
-          <Route path="register" component={Register} />
-          <Route path="createpoll" component={CreatePoll} onEnter={requireAuth} />
+          {/*<Route path="register" component={Register} />
+          <Route path="createpoll" component={CreatePoll} onEnter={requireAuth} />*/}
         </Route>
       </Router>
     </Provider>

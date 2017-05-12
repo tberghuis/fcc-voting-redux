@@ -1,8 +1,7 @@
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
-// import TextField from 'material-ui/TextField';
-// import RaisedButton from 'material-ui/RaisedButton';
+
 
 // import {
 //     UPDATE_FIELD_AUTH,
@@ -11,7 +10,7 @@ import { connect } from 'react-redux';
 // } from '../constants/actionTypes';
 
 // const mapStateToProps = state => ({ ...state.forms.createPoll });
-const mapStateToProps = state => ({  });
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
     // onChangePassword: value =>
@@ -31,18 +30,41 @@ class CreatePoll extends React.Component {
         super();
         // this.changeEmail = ev => this.props.onChangeEmail(ev.target.value);
         // this.changePassword = ev => this.props.onChangePassword(ev.target.value);
-        // this.submitForm = (email, password) => ev => {
-        //     ev.preventDefault();
-        //     this.props.onSubmit(email, password);
-        // };
+        this.submitForm = () => ev => {
+            ev.preventDefault();
+            //this.props.onSubmit(email, password);
+            console.log("submit");
+            
+        };
     }
 
 
     render() {
-      
+
         return (
             <div>
-                createpoll component
+                <h1>New Poll</h1>
+                <form onSubmit={this.submitForm()}>
+                    Title <TextField
+                        hintText="Email"
+                        type="email"
+                        value={this.props.email}
+                        onChange={this.changeEmail}
+                    /><br />
+                    Option X <TextField
+                        hintText="Password"
+                        type="password"
+                        value={this.props.password}
+                        onChange={this.changePassword}
+                    /><br />
+                    Option X <TextField
+                        hintText="Password"
+                        type="password"
+                        value={this.props.password}
+                        onChange={this.changePassword}
+                    /><br />
+                    <RaisedButton type="submit" label="Login" />
+                </form>
             </div>
         );
 

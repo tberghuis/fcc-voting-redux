@@ -11,7 +11,7 @@ export const LOGIN_PAGE_UNLOADED = 'LOGIN_PAGE_UNLOADED';
 
 export const REDIRECT = 'REDIRECT';
 
-// export const APP_LOAD = 'APP_LOAD';
+export const APP_LOAD = 'APP_LOAD';
 
 // export const ARTICLE_SUBMITTED = 'ARTICLE_SUBMITTED';
 // export const SETTINGS_SAVED = 'SETTINGS_SAVED';

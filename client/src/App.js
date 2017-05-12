@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import { connect } from 'react-redux';
-import { REDIRECT } from './constants/actionTypes';
+import {
+  REDIRECT,
+  APP_LOAD
+} from './constants/actionTypes';
 
 import agent from './agent';
 
@@ -12,6 +15,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  onLoad: () =>
+    dispatch({ type: APP_LOAD, jwt: true }),
   onRedirect: () =>
     dispatch({ type: REDIRECT })
 });
@@ -29,20 +34,22 @@ class App extends Component {
     const token = window.localStorage.getItem('jwt');
     if (token) {
       agent.setToken(token);
+      // to redesign...
+      this.props.onLoad();
     }
   }
 
 
   render() {
     return (
-      <MuiThemeProvider>
+      
         <div className="App">
           <div className="App-header">
             <Header />
           </div>
           {this.props.children}
         </div>
-      </MuiThemeProvider>
+      
     );
   }
 }

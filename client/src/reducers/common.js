@@ -2,7 +2,8 @@ import {
     REDIRECT,
     REGISTER,
     LOGIN,
-    LOGOUT
+    LOGOUT,
+    APP_LOAD
 } from '../constants/actionTypes';
 
 // import {
@@ -30,6 +31,12 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
     switch (action.type) {
+        case APP_LOAD:
+            return {
+                ...state,
+                // real app would verify token against server
+                loggedIn: action.jwt
+            };
 
         case LOGIN:
         case REGISTER:

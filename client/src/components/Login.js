@@ -1,8 +1,7 @@
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 // TODO figure out why react warning for textfield type email and password
 
@@ -50,19 +49,20 @@ class Login extends React.Component {
             <div>
                 <h1>Login</h1>
                 <form onSubmit={this.submitForm(email, password)}>
-                    <TextField
-                        hintText="Email"
-                        type="email"
-                        value={this.props.email}
-                        onChange={this.changeEmail}
-                    /><br />
-                    <TextField
-                        hintText="Password"
+                    <Input value={this.props.email}
+                        onChange={this.changeEmail} 
+                        type="email" 
+                        placeholder="Email" />
+                    
+                    <Input
+                        placeholder="Password"
                         type="password"
                         value={this.props.password}
                         onChange={this.changePassword}
                     /><br />
-                    <RaisedButton type="submit" label="Login" />
+                    <Button type="submit">
+                        Login
+                    </Button>
                 </form>
             </div>
         );

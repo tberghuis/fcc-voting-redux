@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
-import FlatButton from 'material-ui/FlatButton';
+
 import { connect } from 'react-redux';
 
 import {
@@ -24,7 +23,9 @@ class Header extends React.Component {
     render() {
         //console.log(this.props.loggedIn);
         
-        return (
+        return <div>tmp</div>;
+
+        /*return (
             <Toolbar>
                 <ToolbarGroup firstChild={true}>
                     <FlatButton label="All Polls" />
@@ -48,7 +49,7 @@ class Header extends React.Component {
 
                 </ToolbarGroup>
             </Toolbar>
-        );
+        );*/
     }
 }
 
