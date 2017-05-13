@@ -1,10 +1,10 @@
-// import { Link } from 'react-router';
-// import ListErrors from './ListErrors';
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
+import { Form } from 'semantic-ui-react';
 
 // TODO figure out why react warning for textfield type email and password
+// should just rewrite to use refs
 
 import {
   UPDATE_FIELD_AUTH,
@@ -54,89 +54,22 @@ class Register extends React.Component {
     return (
       <div>
         <h1>Register</h1>
-        <form onSubmit={this.submitForm(username, email, password)}>
-          <TextField
-            hintText="Username"
+        <Form onSubmit={this.submitForm(username, email, password)}>
+          <Form.Input label='Username' placeholder='Username'
             value={this.props.username}
-            onChange={this.changeUsername}
-          /><br />
-          <TextField
-            hintText="Email"
-            type="email"
+            onChange={this.changeUsername} />
+          <Form.Input label='Email' placeholder='Email'
             value={this.props.email}
             onChange={this.changeEmail}
-          /><br />
-          <TextField
-            hintText="Password"
+            type="email" />
+          <Form.Input label='Password' placeholder='Password'
             type="password"
             value={this.props.password}
-            onChange={this.changePassword}
-          /><br />
-          <RaisedButton type="submit" label="Register" />
-        </form>
+            onChange={this.changePassword} />
+          <Form.Button>Submit</Form.Button>
+        </Form>
       </div>
     );
-
-
-    /*<div className="auth-page">
-      <div className="container page">
-        <div className="row">
-
-          <div className="col-md-6 offset-md-3 col-xs-12">
-            <h1 className="text-xs-center">Sign Up</h1>
-            <p className="text-xs-center">
-              <Link to="login">
-                Have an account?
-              </Link>
-            </p>
-
-            <ListErrors errors={this.props.errors} />
-
-            <form onSubmit={this.submitForm(username, email, password)}>
-              <fieldset>
-
-                <fieldset className="form-group">
-                  <input
-                    className="form-control form-control-lg"
-                    type="text"
-                    placeholder="Username"
-                    value={this.props.username}
-                    onChange={this.changeUsername} />
-                </fieldset>
-
-                <fieldset className="form-group">
-                  <input
-                    className="form-control form-control-lg"
-                    type="email"
-                    placeholder="Email"
-                    value={this.props.email}
-                    onChange={this.changeEmail} />
-                </fieldset>
-
-                <fieldset className="form-group">
-                  <input
-                    className="form-control form-control-lg"
-                    type="password"
-                    placeholder="Password"
-                    value={this.props.password}
-                    onChange={this.changePassword} />
-                </fieldset>
-
-                <button
-                  className="btn btn-lg btn-primary pull-xs-right"
-                  type="submit"
-                  disabled={this.props.inProgress}>
-                  Sign in
-                </button>
-
-              </fieldset>
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </div>*/
-
   }
 }
 

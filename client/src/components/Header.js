@@ -27,10 +27,12 @@ class Header extends React.Component {
                 <Menu.Item>
                     My Polls
                 </Menu.Item>
+                {this.props.loggedIn &&
+                    <Menu.Item  as={Link} to="/createpoll">
+                        Create Poll
+                    </Menu.Item>
+                }
 
-                <Menu.Item>
-                    Create Poll
-                </Menu.Item>
                 <Menu.Menu position='right'>
 
                     {!this.props.loggedIn &&
