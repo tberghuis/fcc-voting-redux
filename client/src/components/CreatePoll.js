@@ -29,15 +29,10 @@ const mapDispatchToProps = dispatch => ({
 class CreatePoll extends React.Component {
     constructor() {
         super();
-        // this.changeEmail = ev => this.props.onChangeEmail(ev.target.value);
-        // this.changePassword = ev => this.props.onChangePassword(ev.target.value);
-
-
         this.state = {
             title: '',
             options: ['', '']
         };
-
     }
 
     submitForm = () => ev => {
