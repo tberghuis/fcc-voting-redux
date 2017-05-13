@@ -1,7 +1,6 @@
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 // TODO figure out why react warning for textfield type email and password
 

@@ -10,18 +10,12 @@ window._state = store.getState;
 
 import App from './App';
 import Home from './components/Home';
-import Login from './components/Login';
+// import Login from './components/Login';
 // import Register from './components/Register';
 // import CreatePoll from './components/CreatePoll';
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
-
-import 'bootstrap/dist/css/bootstrap.css';
-
+//import 'semantic-ui-css/semantic.min.css';
+import 'semantic-ui-css/semantic.css';
 
 function requireAuth(nextState, replace) {
   if (!store.getState().common.loggedIn) {
@@ -38,7 +32,7 @@ ReactDOM.render(
       <Router history={browserHistory}>
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
-          <Route path="login" component={Login} />
+          {/*<Route path="login" component={Login} />*/}
           {/*<Route path="register" component={Register} />
           <Route path="createpoll" component={CreatePoll} onEnter={requireAuth} />*/}
         </Route>
