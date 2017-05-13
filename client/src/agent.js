@@ -39,7 +39,16 @@ const Auth = {
     requests.put('/user', { user })
 };
 
+const Polls = {
+  
+  create: (title, options) =>
+    requests.post('/polls/create', { title, options })
+  
+};
+
+
 export default {
   Auth,
+  Polls,
   setToken: _token => { token = _token; }
 };

@@ -4,11 +4,9 @@ import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react';
 
 
-// import {
-//     UPDATE_FIELD_AUTH,
-//     LOGIN,
-//     LOGIN_PAGE_UNLOADED
-// } from '../constants/actionTypes';
+import {
+    CREATE_POLL
+} from '../constants/actionTypes';
 
 // const mapStateToProps = state => ({ ...state.forms.createPoll });
 const mapStateToProps = state => ({});
@@ -18,12 +16,14 @@ const mapDispatchToProps = dispatch => ({
     //     dispatch({ type: UPDATE_FIELD_AUTH, key: 'password', value }),
     // onChangeEmail: value =>
     //     dispatch({ type: UPDATE_FIELD_AUTH, key: 'email', value }),
-    // onSubmit: (email, password) => {
-    //     const payload = agent.Auth.login(email, password);
-    //     dispatch({ type: LOGIN, payload })
-    // },
+
     // onUnload: () =>
     //     dispatch({ type: LOGIN_PAGE_UNLOADED })
+
+    onSubmit: (title, options) => {
+        const payload = agent.Polls.create(title, options);
+        dispatch({ type: CREATE_POLL, payload });
+    }
 });
 //
 class CreatePoll extends React.Component {
@@ -44,6 +44,9 @@ class CreatePoll extends React.Component {
         ev.preventDefault();
         //this.props.onSubmit(email, password);
         console.log("submit");
+
+        // use the agent
+        this.props.onSubmit(this.state.title,this.state.options);
 
     }
 
@@ -98,7 +101,7 @@ class CreatePoll extends React.Component {
 
         // generateOptionInputs
 
-        
+
         let optionInputs = this.state.options.map((option, i) => {
             return (
                 <Form.Group key={i} >

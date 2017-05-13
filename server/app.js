@@ -40,6 +40,7 @@ mongoose.connect(process.env.MONGODB_URI);
 
 
 require('./models/User');
+require('./models/Poll');
 
 require('./config/passport');
 app.use(passport.initialize());
@@ -50,6 +51,7 @@ const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 const userRoutes = require('./routes/user');
 app.use('/user', userRoutes);
+app.use('/polls', require('./routes/polls'));
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {
