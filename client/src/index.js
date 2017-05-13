@@ -10,8 +10,8 @@ window._state = store.getState;
 
 import App from './App';
 import Home from './components/Home';
-// import Login from './components/Login';
-// import Register from './components/Register';
+import Login from './components/Login';
+import Register from './components/Register';
 // import CreatePoll from './components/CreatePoll';
 
 //import 'semantic-ui-css/semantic.min.css';
@@ -32,9 +32,9 @@ ReactDOM.render(
       <Router history={browserHistory}>
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
-          {/*<Route path="login" component={Login} />*/}
-          {/*<Route path="register" component={Register} />
-          <Route path="createpoll" component={CreatePoll} onEnter={requireAuth} />*/}
+          <Route path="login" component={Login} />
+          <Route path="register" component={Register} />
+          {/*<Route path="createpoll" component={CreatePoll} onEnter={requireAuth} />*/}
         </Route>
       </Router>
     </Provider>

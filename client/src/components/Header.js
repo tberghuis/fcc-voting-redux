@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-
+import { Menu } from 'semantic-ui-react';
 
 import {
     LOGOUT
@@ -17,7 +17,46 @@ const mapDispatchToProps = dispatch => ({
 
 class Header extends React.Component {
     render() {
+
         return (
+            <Menu>
+                <Menu.Item>
+                    All Polls
+                </Menu.Item>
+
+                <Menu.Item>
+                    My Polls
+                </Menu.Item>
+
+                <Menu.Item>
+                    Create Poll
+                </Menu.Item>
+                <Menu.Menu position='right'>
+
+                    {!this.props.loggedIn &&
+                        <Menu.Item as={Link} to="/login">
+                            Login
+                        </Menu.Item>
+                    }
+                    {!this.props.loggedIn &&
+                        <Menu.Item as={Link} to="/register">
+                            Register
+                        </Menu.Item>
+                    }
+                    {this.props.loggedIn &&
+                        <Menu.Item onClick={this.props.onClickLogout}>
+                            Logout
+                        </Menu.Item>
+                    }
+
+
+
+
+                </Menu.Menu>
+            </Menu>
+        );
+
+        /*return (
             <Navbar toggleable>
                 <Container>
                     <NavbarBrand tag={Link} to="/">FCC Voting App</NavbarBrand>
@@ -35,27 +74,11 @@ class Header extends React.Component {
                                 </NavItem>
                             }
                         </Nav>
-                        <Nav className="ml-auto" navbar>
-                            {!this.props.loggedIn &&
-                                <NavItem>
-                                    <NavLink tag={Link} to="/login">Login</NavLink>
-                                </NavItem>
-                            }
-                            {!this.props.loggedIn &&
-                                <NavItem>
-                                    <NavLink tag={Link} to="/register">Register</NavLink>
-                                </NavItem>
-                            }
-                            {this.props.loggedIn &&
-                                <NavItem>
-                                    <NavLink tag={Link} to="#" onClick={this.props.onClickLogout}>Logout</NavLink>
-                                </NavItem>
-                            }
-                        </Nav>
+
                     </Collapse>
                 </Container>
             </Navbar>
-        );
+        );*/
     }
 }
 

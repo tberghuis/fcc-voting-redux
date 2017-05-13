@@ -1,6 +1,7 @@
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
+import { Form } from 'semantic-ui-react'
 
 // TODO figure out why react warning for textfield type email and password
 
@@ -47,27 +48,19 @@ class Login extends React.Component {
         return (
             <div>
                 <h1>Login</h1>
-                <form onSubmit={this.submitForm(email, password)}>
-                    <Input value={this.props.email}
-                        onChange={this.changeEmail} 
-                        type="email" 
-                        placeholder="Email" />
-                    
-                    <Input
-                        placeholder="Password"
+                <Form onSubmit={this.submitForm(email, password)}>
+                    <Form.Input label='Email' placeholder='Email'
+                        value={this.props.email}
+                        onChange={this.changeEmail}
+                        type="email" />
+                    <Form.Input label='Password' placeholder='Password'
                         type="password"
                         value={this.props.password}
-                        onChange={this.changePassword}
-                    /><br />
-                    <Button type="submit">
-                        Login
-                    </Button>
-                </form>
+                        onChange={this.changePassword} />
+                    <Form.Button>Submit</Form.Button>
+                </Form>
             </div>
         );
-
-
-
     }
 }
 
