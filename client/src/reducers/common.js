@@ -3,7 +3,8 @@ import {
     REGISTER,
     LOGIN,
     LOGOUT,
-    APP_LOAD
+    APP_LOAD,
+    CREATE_POLL
 } from '../constants/actionTypes';
 
 // import {
@@ -34,7 +35,7 @@ export default (state = defaultState, action) => {
         case APP_LOAD:
             return {
                 ...state,
-                // real app would verify token against server
+                // TODO real app would verify token against server
                 loggedIn: action.jwt
             };
 
@@ -48,6 +49,10 @@ export default (state = defaultState, action) => {
 
         case REDIRECT:
             return { ...state, redirectTo: null };
+        case CREATE_POLL:
+            //console.log('action',action);
+            // action.payload.poll.id
+            return { ...state, redirectTo: '/poll/'+ action.payload.poll.id};
         case LOGOUT:
             return { ...state, redirectTo: '/', loggedIn: false };
 

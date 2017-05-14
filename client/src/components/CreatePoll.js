@@ -3,6 +3,7 @@ import agent from '../agent';
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react';
 
+
 import {
     CREATE_POLL
 } from '../constants/actionTypes';
@@ -13,6 +14,7 @@ const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
     onSubmit: (title, options) => {
         const payload = agent.Polls.create(title, options);
+        //console.log(CREATE_POLL);
         dispatch({ type: CREATE_POLL, payload });
     }
 });

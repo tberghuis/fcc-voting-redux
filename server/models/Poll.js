@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 
 var User = require('./User');
 
+// TODO mongoose schema to deny bad input through config
+
 var PollSchema = new mongoose.Schema({
     title: { type: String, required: true },
     options: [String],
