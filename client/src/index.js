@@ -13,6 +13,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import CreatePoll from './components/CreatePoll';
+import Poll from './components/Poll';
 
 //import 'semantic-ui-css/semantic.min.css';
 import 'semantic-ui-css/semantic.css';
@@ -35,6 +36,7 @@ ReactDOM.render(
           <Route path="login" component={Login} />
           <Route path="register" component={Register} />
           <Route path="createpoll" component={CreatePoll} onEnter={requireAuth} />
+          <Route path="/poll/:id" component={Poll} />
         </Route>
       </Router>
     </Provider>

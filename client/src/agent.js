@@ -40,7 +40,7 @@ const Auth = {
 };
 
 const Polls = {
-  
+  get: id => requests.get('/polls/'+id),
   create: (title, options) =>
     requests.post('/polls/create', { title, options })
   

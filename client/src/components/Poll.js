@@ -5,11 +5,13 @@ import { Form } from 'semantic-ui-react';
 
 
 import {
-//    CREATE_POLL
+    GET_POLL
 } from '../constants/actionTypes';
 
 // const mapStateToProps = state => ({ ...state.forms.createPoll });
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+    poll: { ...state.currentPoll }
+});
 
 const mapDispatchToProps = dispatch => ({
     // onSubmit: (title, options) => {
@@ -17,12 +19,17 @@ const mapDispatchToProps = dispatch => ({
     //     //console.log(CREATE_POLL);
     //     dispatch({ type: CREATE_POLL, payload });
     // }
+    getPoll: (id) => {
+        //use promise middleware
+        const payload = agent.Polls.get(id);
+        dispatch({ type: GET_POLL, payload });
+    }
 });
 //
 class Poll extends React.Component {
     constructor() {
         super();
-
+        //this.state selectedOption
     }
 
     // id from router???
@@ -31,12 +38,26 @@ class Poll extends React.Component {
     // test currentPoll.id === router.id
     // else fetch poll for router.id
 
+    componentWillMount() {
+        // console.log('will mount', this.props.params.id);
+        // console.log('will mount', this.props.poll.id);
+
+        if(this.props.params.id != this.props.poll.id){
+            this.props.getPoll(this.props.params.id);
+        }
+
+    }
 
     render() {
 
+        // console.log('poll',this.props.poll);
+        if (!this.props.poll.title) {
+            return <div>Loading.....</div>;
+        }
         return (
             <div>
                 Poll single
+                {/*{this.props.poll}*/}
             </div>
         );
     }
