@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
     // }
 });
 //
-class CreatePoll extends React.Component {
+class Poll extends React.Component {
     constructor() {
         super();
 
@@ -42,4 +42,4 @@ class CreatePoll extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePoll);
+export default connect(mapStateToProps, mapDispatchToProps)(Poll);
