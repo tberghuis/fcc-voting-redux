@@ -1,13 +1,11 @@
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
-// import { Form, List, Radio, Input } from 'semantic-ui-react';
 import { Table } from 'semantic-ui-react';
-import Measure from 'react-measure';
+// import Measure from 'react-measure';
 
 import {
     GET_POLL
-    // POLL_VOTE
 } from '../constants/actionTypes';
 
 const mapStateToProps = state => ({
@@ -15,10 +13,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // vote: (id, optionIndex, newOption) => {
-    //     const payload = agent.Polls.vote(id, optionIndex, newOption);
-    //     dispatch({ type: POLL_VOTE, payload });
-    // },
     getPoll: (id) => {
         //use promise middleware
         const payload = agent.Polls.get(id);
@@ -28,21 +22,17 @@ const mapDispatchToProps = dispatch => ({
 //
 class PollResult extends React.Component {
 
-
     componentWillMount() {
         if (this.props.params.id !== this.props.poll.id) {
             this.props.getPoll(this.props.params.id);
         }
     }
 
-
-
     render() {
         if (!this.props.poll.title) {
             return <div>Loading.....</div>;
         }
         let poll = this.props.poll;
-
 
         const getVotesIndex = () => {
             return poll.votes.map((numVotes, index) => {
