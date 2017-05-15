@@ -15,6 +15,8 @@ export const APP_LOAD = 'APP_LOAD';
 
 export const CREATE_POLL = 'CREATE_POLL';
 export const GET_POLL = 'GET_POLL';
+export const POLL_VOTE = 'POLL_VOTE';
+
 
 
 // export const ARTICLE_SUBMITTED = 'ARTICLE_SUBMITTED';

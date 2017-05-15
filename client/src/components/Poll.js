@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { Form, List, Radio, Input } from 'semantic-ui-react';
 
 import {
-    GET_POLL
+    GET_POLL,
+    POLL_VOTE
 } from '../constants/actionTypes';
 
 const mapStateToProps = state => ({
@@ -12,11 +13,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // onSubmit: (title, options) => {
-    //     const payload = agent.Polls.create(title, options);
-    //     //console.log(CREATE_POLL);
-    //     dispatch({ type: CREATE_POLL, payload });
-    // }
+    vote: (id, optionIndex, newOption) => {
+        const payload = agent.Polls.vote(id, optionIndex, newOption);
+        dispatch({ type: POLL_VOTE, payload });
+    },
     getPoll: (id) => {
         //use promise middleware
         const payload = agent.Polls.get(id);
@@ -44,7 +44,9 @@ class Poll extends React.Component {
         
         // use the agent
 
-        console.log('submit');
+        // console.log('submit');
+        let poll = this.props.poll;
+        this.props.vote(poll.id,this.state.selectedOption, this.state.newOption);
     }
 
     selectOption = i => () => {
@@ -93,7 +95,8 @@ class Poll extends React.Component {
                                 onChange={this.changeNewOption} />
                         </List.Item>
                     </List>
-                    <Form.Button>Vote</Form.Button>
+                    <Form.Button
+                        disabled={poll.userHasVoted}>Vote</Form.Button>
                     <Form.Button
                         type="button">Results</Form.Button>
                 </Form>

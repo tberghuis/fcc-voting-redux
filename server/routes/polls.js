@@ -103,41 +103,37 @@ router.get('/:id', authMiddleware.optional, function (req, res, next) {
                 error: err
             });
         });
+});
 
 
-    // needs to populate userHasVoted
-    // console.log('id',req.params.id);
+router.post('/:id', authMiddleware.optional, function (req, res, next) {
 
-    // Poll.findById(req.params.id, (error, poll) => {
-    //     if (error) {
-    //         return res.status(500).json({
-    //             title: 'An error occurred',
-    //             error: err
-    //         });
-    //     }
-    //     let pollResponse = {};
-    //     pollResponse.id = result._id;
-    //     pollResponse.votes = result.votes;
-    //     pollResponse.title = result.title;
-    //     pollResponse.options = result.options;
+    console.log('post /polls', req.body);
 
-    //     // has user voted
+    //stuff validation for now
 
+    // find poll
 
+    Poll.findById(req.params.id, (error, poll) => {
+        if (error) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error
+            });
+        }
 
+        // add user id to usersVoted
 
-    //     if (){ }
-    //     else {
-    //         res.status(200).json({
-    //             message: 'Success',
-    //             poll: pollResponse
-    //         });
-    //     }
+        // else add ip to ipsvoted
 
 
-    // });
+    });
+
+
+    // put getUserIp into function
 
 });
+
 
 
 module.exports = router;

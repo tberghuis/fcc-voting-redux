@@ -29,8 +29,8 @@ const Auth = {
   current: () =>
     requests.get('/user'),
   login: (email, password) => {
-    console.log(email,password);
-    
+    console.log(email, password);
+
     return requests.post('/auth/login', { user: { email, password } })
   },
   register: (username, email, password) =>
@@ -40,10 +40,11 @@ const Auth = {
 };
 
 const Polls = {
-  get: id => requests.get('/polls/'+id),
+  get: id => requests.get('/polls/' + id),
   create: (title, options) =>
-    requests.post('/polls/create', { title, options })
-  
+    requests.post('/polls/create', { title, options }),
+  vote: (id, optionIndex, newOption) =>
+    requests.post('/polls/' + id, { optionIndex, newOption })
 };
 
 
