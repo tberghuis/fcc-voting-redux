@@ -9,7 +9,7 @@ import {
 } from '../constants/actionTypes';
 
 const mapStateToProps = state => ({
-    // poll: { ...state.currentPoll }
+    polls: state.allPolls
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -33,10 +33,13 @@ class AllPolls extends React.Component {
 
     render() {
 
-
+        console.log('polls', this.props.polls);
         return (
             <div>
                 All Polls
+                {this.props.polls.map((poll,i)=>{
+                    return <div key={i}>{poll.title}</div>
+                })}
             </div >
         );
     }
