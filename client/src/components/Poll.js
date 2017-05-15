@@ -1,14 +1,12 @@
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
-import { Form } from 'semantic-ui-react';
-
+import { Form, List, Radio, Input } from 'semantic-ui-react';
 
 import {
     GET_POLL
 } from '../constants/actionTypes';
 
-// const mapStateToProps = state => ({ ...state.forms.createPoll });
 const mapStateToProps = state => ({
     poll: { ...state.currentPoll }
 });
@@ -29,36 +27,78 @@ const mapDispatchToProps = dispatch => ({
 class Poll extends React.Component {
     constructor() {
         super();
-        //this.state selectedOption
+        this.state = {
+            selectedOption: null,
+            newOption: ''
+        };
     }
 
-    // id from router???
-
-    // on component will mount
-    // test currentPoll.id === router.id
-    // else fetch poll for router.id
-
     componentWillMount() {
-        // console.log('will mount', this.props.params.id);
-        // console.log('will mount', this.props.poll.id);
-
-        if(this.props.params.id != this.props.poll.id){
+        if (this.props.params.id != this.props.poll.id) {
             this.props.getPoll(this.props.params.id);
         }
+    }
 
+    submitForm = ev => {
+        ev.preventDefault();
+        
+        // use the agent
+
+        console.log('submit');
+    }
+
+    selectOption = i => () => {
+        this.setState({
+            selectedOption: i
+        });
+    }
+
+    changeNewOption = ev => {
+        this.setState({
+            newOption: ev.target.value
+        });
     }
 
     render() {
-
-        // console.log('poll',this.props.poll);
         if (!this.props.poll.title) {
             return <div>Loading.....</div>;
         }
+        let poll = this.props.poll;
         return (
             <div>
-                Poll single
-                {/*{this.props.poll}*/}
-            </div>
+                <Form onSubmit={this.submitForm}>
+                    <h1>{poll.title}</h1>
+
+                    <List>
+                        {poll.options.map((option, i) => {
+                            return (
+                                <List.Item key={i}>
+                                    <Radio
+                                        label={option}
+                                        checked={this.state.selectedOption === i}
+                                        onClick={this.selectOption(i)}
+                                    />
+                                </List.Item>
+                            );
+                        })}
+                        <List.Item>
+                            <Radio
+                                checked={this.state.selectedOption === 'newoption'}
+                                onClick={this.selectOption('newoption')}
+                            />
+                            {'\u00A0\u00A0'}<Input
+                                onClick={this.selectOption('newoption')}
+                                placeholder='New Option'
+                                value={this.state.newOption}
+                                onChange={this.changeNewOption} />
+                        </List.Item>
+                    </List>
+                    <Form.Button>Vote</Form.Button>
+                    <Form.Button
+                        type="button">Results</Form.Button>
+                </Form>
+                <br/>Share this poll by copying the URL in the address bar.
+            </div >
         );
     }
 }

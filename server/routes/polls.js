@@ -65,7 +65,7 @@ router.get('/:id', authMiddleware.optional, function (req, res, next) {
     // rewrite with promises
     Poll.findById(req.params.id).exec()
         .then(poll => {
-            console.log('poll', poll);
+            //console.log('poll', poll);
             // so i want to pass poll and userHasVoted
 
             let userHasVoted = false;
