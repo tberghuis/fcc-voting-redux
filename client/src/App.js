@@ -42,20 +42,21 @@ class App extends Component {
 
   render() {
     return (
-      
-        <div className="App">
-          <div className="App-header">
-            <Header />
-          </div>
+
+      <div className="App">
+        <div className="App-header">
+          <Header />
+        </div>
+        <div style={{margin:'20px',marginBottom:'70px'}}>
           {this.props.children}
         </div>
-      
+      </div>
+
     );
   }
 }
 
-// export default App;
-
+// TODO warning deprecated
 App.contextTypes = {
   router: React.PropTypes.object.isRequired
 };

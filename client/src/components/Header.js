@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 import { connect } from 'react-redux';
 import { Menu } from 'semantic-ui-react';
 
@@ -16,32 +16,38 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class Header extends React.Component {
+
+
+
     render() {
+
+        // TODO migrate to react router 4 and use active class or something
+
+        let activeStyle = { backgroundColor: 'rgba(0, 0, 0, 0.05)' }
 
         return (
             <Menu>
-                <Menu.Item as={Link} to="/">
+                <Menu.Item as={IndexLink} to="/" activeStyle={activeStyle} >
                     All Polls
                 </Menu.Item>
-
-                <Menu.Item>
-                    My Polls
-                </Menu.Item>
                 {this.props.loggedIn &&
-                    <Menu.Item as={Link} to="/createpoll">
+                    <Menu.Item as={Link} to="/mypolls" activeStyle={activeStyle}>
+                        My Polls
+                    </Menu.Item>
+                }
+                {this.props.loggedIn &&
+                    <Menu.Item as={Link} to="/createpoll" activeStyle={activeStyle}>
                         Create Poll
                     </Menu.Item>
                 }
-
                 <Menu.Menu position='right'>
-
                     {!this.props.loggedIn &&
-                        <Menu.Item as={Link} to="/login">
+                        <Menu.Item as={Link} to="/login" activeStyle={activeStyle}>
                             Login
                         </Menu.Item>
                     }
                     {!this.props.loggedIn &&
-                        <Menu.Item as={Link} to="/register">
+                        <Menu.Item as={Link} to="/register" activeStyle={activeStyle}>
                             Register
                         </Menu.Item>
                     }
@@ -50,37 +56,9 @@ class Header extends React.Component {
                             Logout
                         </Menu.Item>
                     }
-
-
-
-
                 </Menu.Menu>
             </Menu>
         );
-
-        /*return (
-            <Navbar toggleable>
-                <Container>
-                    <NavbarBrand tag={Link} to="/">FCC Voting App</NavbarBrand>
-                    <Collapse isOpen={true} navbar>
-                        <Nav className="mr-auto" navbar>
-                            <NavItem>
-                                <NavLink href="#">All Polls</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="#">My Polls</NavLink>
-                            </NavItem>
-                            {this.props.loggedIn &&
-                                <NavItem>
-                                    <NavLink tag={Link} to="/createpoll">Create Poll</NavLink>
-                                </NavItem>
-                            }
-                        </Nav>
-
-                    </Collapse>
-                </Container>
-            </Navbar>
-        );*/
     }
 }
 

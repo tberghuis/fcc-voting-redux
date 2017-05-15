@@ -6,35 +6,35 @@ import { connect } from 'react-redux';
 import PollList from './PollList';
 
 import {
-    GET_POLL_ALL
+    GET_POLL_MY
 } from '../constants/actionTypes';
 
 const mapStateToProps = state => ({
-    polls: state.allPolls
+    polls: state.myPolls
 });
 
 const mapDispatchToProps = dispatch => ({
-    getAllPolls: () => {
-        const payload = agent.Polls.all();
-        dispatch({ type: GET_POLL_ALL, payload });
+    getMyPolls: () => {
+        const payload = agent.Polls.my();
+        dispatch({ type: GET_POLL_MY, payload });
     }
 });
 
-class AllPolls extends React.Component {
+class MyPolls extends React.Component {
 
     componentWillMount() {
-        this.props.getAllPolls();
+        this.props.getMyPolls();
     }
 
     render() {
         //console.log('polls', this.props.polls);
         return (
             <div>
-                All Polls
+                My Polls
                 <PollList polls={this.props.polls} />
             </div >
         );
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllPolls);
+export default connect(mapStateToProps, mapDispatchToProps)(MyPolls);

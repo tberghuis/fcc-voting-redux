@@ -2,6 +2,7 @@ import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
 import { Form, List, Radio, Input } from 'semantic-ui-react';
+import { browserHistory } from 'react-router';
 
 import {
     GET_POLL,
@@ -41,12 +42,12 @@ class Poll extends React.Component {
 
     submitForm = ev => {
         ev.preventDefault();
-        
+
         // use the agent
 
         // console.log('submit');
         let poll = this.props.poll;
-        this.props.vote(poll.id,this.state.selectedOption, this.state.newOption);
+        this.props.vote(poll.id, this.state.selectedOption, this.state.newOption);
     }
 
     selectOption = i => () => {
@@ -98,12 +99,17 @@ class Poll extends React.Component {
                     <Form.Button
                         disabled={poll.userHasVoted}>Vote</Form.Button>
                     <Form.Button
+                        onClick={() => {
+                            browserHistory.push('/poll/'+poll.id+'/result');
+                        }}
                         type="button">Results</Form.Button>
                 </Form>
-                <br/>Share this poll by copying the URL in the address bar.
+                <br />Share this poll by copying the URL in the address bar.
             </div >
         );
     }
 }
+
+// as={Link} to={'/poll/'+poll.id+'/result'}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Poll);

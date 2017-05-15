@@ -57,7 +57,7 @@ class PollResult extends React.Component {
                             <Table.Cell>{poll.options[voteIndex.index]}</Table.Cell>
                             <Table.Cell>
                                 {(() => {
-                                    if (maxVotes == 0) {
+                                    if (maxVotes === 0) {
                                         return <div></div>;
                                     }
                                     let w = 100 / maxVotes * voteIndex.numVotes;
