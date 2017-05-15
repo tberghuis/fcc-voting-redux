@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,15 +14,32 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
   <title>React App</title>
-
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
   <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+    #root {
+      min-height: 100%;
+      /* equal to footer height */
+      margin-bottom: -51px;
+    }
+    #root:after {
+      content: "";
+      display: block;
+    }
+    #footer,
+    #root:after {
+      height: 51px;
+    }
+  </style>
 </head>
-
 <body>
   <div id="root"></div>
-
-  <a href="https://github.com/tberghuis/fcc-voting-redux" target="_blank" style="position:fixed;bottom:0;width:100%;background:linear-gradient(#485563, #29323c);text-align: center;padding:15px;box-shadow:0 5px 5px 5px rgba(0,0,0,0.4);z-index:999;color:#fff;font-size:1.5rem;display:block"><i class="ion-social-github"></i>&nbsp;&nbsp;Fork on GitHub</a>
+  <div id="footer">
+    <a href="https://github.com/tberghuis/fcc-voting-redux" target="_blank" style="width:100%;background:linear-gradient(#485563, #29323c);text-align: center;padding:15px;box-shadow:0 5px 5px 5px rgba(0,0,0,0.4);z-index:999;color:#fff;font-size:1.5rem;display:block"><i class="ion-social-github"></i>&nbsp;&nbsp;Fork on GitHub</a>
+  </div>
 </body>
-
 </html>

@@ -3,16 +3,13 @@ var router = require('express').Router();
 var User = mongoose.model('User');
 var Poll = mongoose.model('Poll');
 var authMiddleware = require('../middleware/auth');
+var ObjectId = require('mongoose').Types.ObjectId;
 
 router.post('/create', authMiddleware.required, function (req, res, next) {
-    //console.log('post', req.body);
 
     // TODO mongoose schema to deny bad input through config
     // it would be a thankless job...
     // main focus is endtoend working example
-
-    //console.log('user', req.payload);
-    //req.payload.id
 
     User.findById(req.user.id, function (err, user) {
         if (err) {
@@ -39,9 +36,6 @@ router.post('/create', authMiddleware.required, function (req, res, next) {
             user.polls.push(result);
             user.save();
 
-
-            //console.log(result);
-
             let pollResponse = {};
             pollResponse.id = result._id;
             pollResponse.votes = result.votes;
@@ -54,8 +48,6 @@ router.post('/create', authMiddleware.required, function (req, res, next) {
             });
         });
     });
-
-
 });
 
 function getUserIP(req) {
@@ -65,47 +57,64 @@ function getUserIP(req) {
         req.connection.socket.remoteAddress;
 }
 
+router.get('/my', authMiddleware.required, function (req, res, next) {
+
+    // console.log('get my polls');
+
+    let userId = req.user.id;
+    Poll.find({ owner: new ObjectId(userId) }).select('title').exec((error, polls) => {
+
+        if (error) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error
+            });
+        }
+
+        res.status(200).json({
+            message: 'Success',
+            polls
+        });
+    });
+});
+
+
+
 router.get('/:id', authMiddleware.optional, function (req, res, next) {
 
+    // console.log('here');
 
+    Poll.findById(req.params.id).exec((error, poll) => {
+        if (error) {
+            res.status(500).json({
+                title: 'An error occurred',
+                error: error
+            });
+        }
+        let userHasVoted = false;
+        // not auth
+        if (!req.user || !req.user.id) {
 
-    // rewrite with promises
-    Poll.findById(req.params.id).exec()
-        .then(poll => {
-            //console.log('poll', poll);
-            // so i want to pass poll and userHasVoted
-
-            let userHasVoted = false;
-
-            // not auth
-            if (!req.user || !req.user.id) {
-
-                if (poll.ipsVoted.indexOf(getUserIP(req)) > -1) {
-                    userHasVoted = true;
-                }
-
-            } else if (poll.usersVoted.indexOf(req.user.id) > -1) {
+            if (poll.ipsVoted.indexOf(getUserIP(req)) > -1) {
                 userHasVoted = true;
             }
 
-            // now send
-            let pollResponse = {};
-            pollResponse.id = poll._id;
-            pollResponse.votes = poll.votes;
-            pollResponse.title = poll.title;
-            pollResponse.options = poll.options;
-            pollResponse.userHasVoted = userHasVoted;
-            res.status(201).json({
-                message: 'Saved poll',
-                poll: pollResponse
-            });
-        })
-        .catch(error => {
-            res.status(500).json({
-                title: 'An error occurred',
-                error: err
-            });
+        } else if (poll.usersVoted.indexOf(req.user.id) > -1) {
+            userHasVoted = true;
+        }
+
+        // now send
+        let pollResponse = {};
+        pollResponse.id = poll._id;
+        pollResponse.votes = poll.votes;
+        pollResponse.title = poll.title;
+        pollResponse.options = poll.options;
+        pollResponse.userHasVoted = userHasVoted;
+        res.status(201).json({
+            message: 'Saved poll',
+            poll: pollResponse
         });
+    });
 });
 
 
@@ -180,52 +189,25 @@ router.post('/:id', authMiddleware.optional, function (req, res, next) {
                 poll: pollResponse
             });
         });
-
-
     });
-
-
-    // put getUserIp into function
-
 });
 
 router.get('/', function (req, res, next) {
 
-
-    console.log('get all polls');
+    // console.log('get all polls');
 
     Poll.find({}).select('title').exec((error, polls) => {
-
-        res.status(200).json({
-            message: 'Success',
-            polls
-        });
-
-    });
-
-});
-
-router.get('/my', authMiddleware.required, function (req, res, next) {
-
-    console.log('get my polls');
-
-    let userId = req.user.id;
-    Poll.find({ owner: new ObjectId(userId) }).select('title').exec((error, polls) => {
-
         if (error) {
             return res.status(500).json({
                 title: 'An error occurred',
                 error
             });
         }
-
         res.status(200).json({
             message: 'Success',
             polls
         });
-
     });
-
 });
 
 module.exports = router;

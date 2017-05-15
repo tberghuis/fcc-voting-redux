@@ -1,7 +1,7 @@
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
-import { Form, List, Radio, Input } from 'semantic-ui-react';
+import { Form, List, Radio, Input, Container, Header } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
 
 import {
@@ -69,42 +69,46 @@ class Poll extends React.Component {
         let poll = this.props.poll;
         return (
             <div>
-                <Form onSubmit={this.submitForm}>
-                    <h1>{poll.title}</h1>
+                Poll Vote
+                <Container text>
+                    <Form onSubmit={this.submitForm}>
+                        <h1>{poll.title}</h1>
 
-                    <List>
-                        {poll.options.map((option, i) => {
-                            return (
-                                <List.Item key={i}>
-                                    <Radio
-                                        label={option}
-                                        checked={this.state.selectedOption === i}
-                                        onClick={this.selectOption(i)}
-                                    />
-                                </List.Item>
-                            );
-                        })}
-                        <List.Item>
-                            <Radio
-                                checked={this.state.selectedOption === 'newoption'}
-                                onClick={this.selectOption('newoption')}
-                            />
-                            {'\u00A0\u00A0'}<Input
-                                onClick={this.selectOption('newoption')}
-                                placeholder='New Option'
-                                value={this.state.newOption}
-                                onChange={this.changeNewOption} />
-                        </List.Item>
-                    </List>
-                    <Form.Button
-                        disabled={poll.userHasVoted}>Vote</Form.Button>
-                    <Form.Button
-                        onClick={() => {
-                            browserHistory.push('/poll/'+poll.id+'/result');
-                        }}
-                        type="button">Results</Form.Button>
-                </Form>
-                <br />Share this poll by copying the URL in the address bar.
+                        <List>
+                            {poll.options.map((option, i) => {
+                                return (
+                                    <List.Item key={i}>
+                                        <Radio
+                                            label={option}
+                                            checked={this.state.selectedOption === i}
+                                            onClick={this.selectOption(i)}
+                                        />
+                                    </List.Item>
+                                );
+                            })}
+                            <List.Item>
+                                <Radio
+                                    checked={this.state.selectedOption === 'newoption'}
+                                    onClick={this.selectOption('newoption')}
+                                />
+                                {'\u00A0\u00A0'}<Input
+                                    onClick={this.selectOption('newoption')}
+                                    placeholder='New Option'
+                                    value={this.state.newOption}
+                                    onChange={this.changeNewOption} />
+                            </List.Item>
+                        </List>
+                        {poll.userHasVoted && 'You have already voted in this Poll'}
+                        <Form.Button
+                            disabled={poll.userHasVoted}>Vote</Form.Button>
+                        <Form.Button
+                            onClick={() => {
+                                browserHistory.push('/poll/' + poll.id + '/result');
+                            }}
+                            type="button">Results</Form.Button>
+                    </Form>
+                    <br />Share this poll by copying the URL in the address bar.
+                </Container>
             </div >
         );
     }

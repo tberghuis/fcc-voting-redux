@@ -1,7 +1,7 @@
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
-import { Form } from 'semantic-ui-react';
+import { Form, Container } from 'semantic-ui-react';
 
 
 import {
@@ -32,7 +32,7 @@ class CreatePoll extends React.Component {
         ev.preventDefault();
         //console.log("submit");
         // use the agent
-        this.props.onSubmit(this.state.title,this.state.options);
+        this.props.onSubmit(this.state.title, this.state.options);
     }
 
     changeTitle = ev => {
@@ -75,21 +75,24 @@ class CreatePoll extends React.Component {
         });
         return (
             <div>
-                <h1>New Poll</h1>
-                <Form onSubmit={this.submitForm()}>
-                    <Form.Input label='Title' placeholder='Title'
-                        value={this.state.title}
-                        onChange={this.changeTitle}
-                    />
-                    <Form.Field>
-                        <label>Options</label>
-                        {optionInputs}
-                    </Form.Field>
-                    <Form.Button
-                        type="button"
-                        onClick={this.addOption}>Add Option</Form.Button>
-                    <Form.Button>Submit</Form.Button>
-                </Form>
+                Create Poll
+                <Container text>
+                    <h1>New Poll</h1>
+                    <Form onSubmit={this.submitForm()}>
+                        <Form.Input label='Title' placeholder='Title'
+                            value={this.state.title}
+                            onChange={this.changeTitle}
+                        />
+                        <Form.Field>
+                            <label>Options</label>
+                            {optionInputs}
+                        </Form.Field>
+                        <Form.Button
+                            type="button"
+                            onClick={this.addOption}>Add Option</Form.Button>
+                        <Form.Button>Submit</Form.Button>
+                    </Form>
+                </Container>
             </div>
         );
     }

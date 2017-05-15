@@ -47,7 +47,7 @@ class App extends Component {
         <div className="App-header">
           <Header />
         </div>
-        <div style={{margin:'20px',marginBottom:'70px'}}>
+        <div style={{margin:'20px',marginBottom:'25px'}}>
           {this.props.children}
         </div>
       </div>
