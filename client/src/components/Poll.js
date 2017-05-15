@@ -1,7 +1,7 @@
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
-import { Form, List, Radio, Input, Container, Header } from 'semantic-ui-react';
+import { Form, List, Radio, Input, Container } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
 
 import {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Container } from 'semantic-ui-react';
 
 class PollList extends React.Component {
 
@@ -8,17 +8,20 @@ class PollList extends React.Component {
 
         // console.log('polls', this.props.polls);
         return (
-            <div style={{ textAlign: 'center' }}>
+            <Container text>
                 {this.props.polls.map((poll, i) => {
                     return (
-                        <Segment vertical key={i}>
-                            <Link to={"/poll/" + poll._id}>
-                                <h3>{poll.title}</h3>
-                            </Link>
+                        <Segment vertical key={i} style={{ position: 'relative' }}>
+                            <h3 style={{ display: 'inline' }}>
+                                <Link to={"/poll/" + poll._id}>
+                                    {poll.title}
+                                </Link>
+                            </h3>
+                            <button style={{ position: 'absolute', right: 0 }}>X</button>
                         </Segment>
                     );
                 })}
-            </div>
+            </Container>
         );
     }
 }
