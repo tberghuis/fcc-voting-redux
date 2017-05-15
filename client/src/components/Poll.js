@@ -34,7 +34,7 @@ class Poll extends React.Component {
     }
 
     componentWillMount() {
-        if (this.props.params.id != this.props.poll.id) {
+        if (this.props.params.id !== this.props.poll.id) {
             this.props.getPoll(this.props.params.id);
         }
     }

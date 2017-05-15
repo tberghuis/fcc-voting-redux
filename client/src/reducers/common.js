@@ -4,7 +4,8 @@ import {
     LOGIN,
     LOGOUT,
     APP_LOAD,
-    CREATE_POLL
+    CREATE_POLL,
+    POLL_VOTE
 } from '../constants/actionTypes';
 
 // import {
@@ -52,7 +53,12 @@ export default (state = defaultState, action) => {
         case CREATE_POLL:
             //console.log('action',action);
             // action.payload.poll.id
-            return { ...state, redirectTo: '/poll/'+ action.payload.poll.id};
+            return { ...state, redirectTo: '/poll/' + action.payload.poll.id };
+
+        case POLL_VOTE:
+            return { ...state, 
+                redirectTo: action.error ? null : '/poll/' + action.payload.poll.id + '/result' 
+            };
         case LOGOUT:
             return { ...state, redirectTo: '/', loggedIn: false };
 

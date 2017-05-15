@@ -58,6 +58,13 @@ router.post('/create', authMiddleware.required, function (req, res, next) {
 
 });
 
+function getUserIP(req) {
+    return req.headers['x-forwarded-for'] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress;
+}
+
 router.get('/:id', authMiddleware.optional, function (req, res, next) {
 
 
@@ -72,12 +79,8 @@ router.get('/:id', authMiddleware.optional, function (req, res, next) {
 
             // not auth
             if (!req.user || !req.user.id) {
-                //check ip
-                let ip = req.headers['x-forwarded-for'] ||
-                    req.connection.remoteAddress ||
-                    req.socket.remoteAddress ||
-                    req.connection.socket.remoteAddress;
-                if (poll.ipsVoted.indexOf(ip) > -1) {
+
+                if (poll.ipsVoted.indexOf(getUserIP(req)) > -1) {
                     userHasVoted = true;
                 }
 
@@ -110,9 +113,11 @@ router.post('/:id', authMiddleware.optional, function (req, res, next) {
 
     console.log('post /polls', req.body);
 
-    //stuff validation for now
+    // stuff validation for now
+    // would need to validate req.body fields in real app
 
-    // find poll
+    let userId = req.user ? req.user.id : null;
+    let userIP = getUserIP(req);
 
     Poll.findById(req.params.id, (error, poll) => {
         if (error) {
@@ -122,9 +127,57 @@ router.post('/:id', authMiddleware.optional, function (req, res, next) {
             });
         }
 
-        // add user id to usersVoted
+        if (poll.usersVoted.indexOf(userId) > -1) {
+            // should i send error... probably
+            return res.status(412).json({
+                title: 'User has already voted on this poll'
+            });
+        } else if (poll.ipsVoted.indexOf(userIP) > -1) {
+            return res.status(412).json({
+                title: 'User at IP ' + userIP + ' has already voted on this poll'
+            });
+        }
 
-        // else add ip to ipsvoted
+        // add user id to usersVoted
+        if (userId) {
+            poll.usersVoted.push(userId);
+            poll.markModified("usersVoted");
+        } else {
+            poll.ipsVoted.push(userIP);
+            poll.markModified("ipsVoted");
+        }
+
+        if (req.body.optionIndex === 'newoption') {
+            poll.options.push(req.body.newOption);
+            poll.markModified("options");
+            poll.votes.push(1);
+        }
+        else {
+            poll.votes[req.body.optionIndex]++;
+        }
+
+        poll.markModified("votes");
+
+        poll.save(function (err, result) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+
+            let pollResponse = {};
+            pollResponse.id = result._id;
+            pollResponse.votes = result.votes;
+            pollResponse.title = result.title;
+            pollResponse.options = result.options;
+            pollResponse.userHasVoted = true;
+
+            res.status(201).json({
+                message: 'voted on poll',
+                poll: pollResponse
+            });
+        });
 
 
     });
