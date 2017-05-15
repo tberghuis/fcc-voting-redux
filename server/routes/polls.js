@@ -166,6 +166,8 @@ router.post('/:id', authMiddleware.optional, function (req, res, next) {
                 });
             }
 
+            // TODO instead of this should select fields somehow
+
             let pollResponse = {};
             pollResponse.id = result._id;
             pollResponse.votes = result.votes;
@@ -187,6 +189,43 @@ router.post('/:id', authMiddleware.optional, function (req, res, next) {
 
 });
 
+router.get('/', function (req, res, next) {
 
+
+    console.log('get all polls');
+
+    Poll.find({}).select('title').exec((error, polls) => {
+
+        res.status(200).json({
+            message: 'Success',
+            polls
+        });
+
+    });
+
+});
+
+router.get('/my', authMiddleware.required, function (req, res, next) {
+
+    console.log('get my polls');
+
+    let userId = req.user.id;
+    Poll.find({ owner: new ObjectId(userId) }).select('title').exec((error, polls) => {
+
+        if (error) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error
+            });
+        }
+
+        res.status(200).json({
+            message: 'Success',
+            polls
+        });
+
+    });
+
+});
 
 module.exports = router;

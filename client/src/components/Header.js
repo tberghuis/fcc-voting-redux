@@ -20,7 +20,7 @@ class Header extends React.Component {
 
         return (
             <Menu>
-                <Menu.Item>
+                <Menu.Item as={Link} to="/">
                     All Polls
                 </Menu.Item>
 
@@ -28,7 +28,7 @@ class Header extends React.Component {
                     My Polls
                 </Menu.Item>
                 {this.props.loggedIn &&
-                    <Menu.Item  as={Link} to="/createpoll">
+                    <Menu.Item as={Link} to="/createpoll">
                         Create Poll
                     </Menu.Item>
                 }

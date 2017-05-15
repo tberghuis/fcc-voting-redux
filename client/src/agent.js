@@ -41,6 +41,8 @@ const Auth = {
 
 const Polls = {
   get: id => requests.get('/polls/' + id),
+  all: () => requests.get('/polls'),
+  my: () => requests.get('/polls/my'),
   create: (title, options) =>
     requests.post('/polls/create', { title, options }),
   vote: (id, optionIndex, newOption) =>

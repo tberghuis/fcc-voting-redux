@@ -9,12 +9,13 @@ import store from './store';
 window._state = store.getState;
 
 import App from './App';
-import Home from './components/Home';
+// import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import CreatePoll from './components/CreatePoll';
 import Poll from './components/Poll';
 import PollResult from './components/PollResult';
+import AllPolls from './components/AllPolls';
 
 //import 'semantic-ui-css/semantic.min.css';
 import 'semantic-ui-css/semantic.css';
@@ -33,7 +34,7 @@ ReactDOM.render(
     <Provider store={store}>
       <Router history={browserHistory}>
         <Route path="/" component={App}>
-          <IndexRoute component={Home} />
+          <IndexRoute component={AllPolls} />
           <Route path="login" component={Login} />
           <Route path="register" component={Register} />
           <Route path="createpoll" component={CreatePoll} onEnter={requireAuth} />
