@@ -8,28 +8,8 @@ import {
     POLL_VOTE
 } from '../constants/actionTypes';
 
-// import {
-//   APP_LOAD,
-//   REDIRECT,
-//   ,
-//   ARTICLE_SUBMITTED,
-//   SETTINGS_SAVED,
-//   ,
-
-//   DELETE_ARTICLE,
-
-//   ,
-//   
-// } from '../constants/actionTypes';
-
 const defaultState = {
-
 };
-// const defaultState = {
-//   appName: 'Conduit',
-//   token: null,
-//   viewChangeCounter: 0
-// };
 
 export default (state = defaultState, action) => {
     switch (action.type) {
@@ -51,10 +31,7 @@ export default (state = defaultState, action) => {
         case REDIRECT:
             return { ...state, redirectTo: null };
         case CREATE_POLL:
-            //console.log('action',action);
-            // action.payload.poll.id
             return { ...state, redirectTo: '/poll/' + action.payload.poll.id };
-
         case POLL_VOTE:
             return { ...state, 
                 redirectTo: action.error ? null : '/poll/' + action.payload.poll.id + '/result' 

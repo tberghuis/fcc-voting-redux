@@ -9,13 +9,10 @@ export default (state = {}, action) => {
         case GET_POLL:
         case CREATE_POLL:
         case POLL_VOTE:
-            // console.log(action);
             return {
-                ...action.payload.poll //, userHasVoted: false
+                ...action.payload.poll
             };
         default:
             return state;
     }
-
-    //return state;
 };
