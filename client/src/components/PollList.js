@@ -4,6 +4,12 @@ import { Segment, Container } from 'semantic-ui-react';
 
 class PollList extends React.Component {
 
+
+    handleDelete = (pollId) => () => {
+        console.log(pollId);
+    }
+
+
     render() {
 
         // console.log('polls', this.props.polls);
@@ -17,8 +23,10 @@ class PollList extends React.Component {
                                     {poll.title}
                                 </Link>
                             </h3>
-                            <button style={{ position: 'absolute', right: 0 }}>X</button>
+                            {this.props.delete || true && <button style={{ position: 'absolute', right: 0 }}
+                                onClick={this.handleDelete(poll._id)}>X</button>}
                         </Segment>
+
                     );
                 })}
             </Container>
