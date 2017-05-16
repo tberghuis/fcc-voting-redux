@@ -33,12 +33,24 @@ class Login extends React.Component {
         this.changePassword = ev => this.props.onChangePassword(ev.target.value);
         this.submitForm = (email, password) => ev => {
             ev.preventDefault();
+            if(!this.isValidForm()){
+                return;
+            }
             this.props.onSubmit(email, password);
         };
     }
 
     componentWillUnmount() {
         this.props.onUnload();
+    }
+
+    isValidForm = () => {
+        if (this.props.email.trim() === ''
+            || this.props.password.trim() === ''
+        ) {
+            return false;
+        }
+        return true;
     }
 
     render() {
@@ -57,7 +69,9 @@ class Login extends React.Component {
                         type="password"
                         value={this.props.password}
                         onChange={this.changePassword} />
-                    <Form.Button>Submit</Form.Button>
+                    <Form.Button
+                        disabled={!this.isValidForm()}
+                    >Submit</Form.Button>
                 </Form>
             </div>
         );

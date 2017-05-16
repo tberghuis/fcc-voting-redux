@@ -49,11 +49,6 @@ class Register extends React.Component {
   }
 
   isValidForm = () => {
-
-    // console.log('username',this.props.username);
-    // console.log('email',this.props.email);
-    // console.log('password',this.props.password);
-
     if (this.props.username.trim() === ''
       || this.props.email.trim() === ''
       || this.props.password.trim() === ''

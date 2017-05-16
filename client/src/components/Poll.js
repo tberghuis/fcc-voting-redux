@@ -34,13 +34,14 @@ class Poll extends React.Component {
     }
 
     componentWillMount() {
-        if (this.props.params.id !== this.props.poll.id) {
-            this.props.getPoll(this.props.params.id);
-        }
+        // if (this.props.params.id !== this.props.poll.id) {
+        this.props.getPoll(this.props.params.id);
+        // }
     }
 
     submitForm = ev => {
         ev.preventDefault();
+        // console.log('submit',this.state);
         if (!this.isValidForm()) {
             return;
         }
