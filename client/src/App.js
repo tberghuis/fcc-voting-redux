@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types'; 
+
+import agent from './agent';
+import Header from './components/Header.js';
+
 import {
   REDIRECT,
   APP_LOAD
 } from './constants/actionTypes';
-
-import agent from './agent';
-
-import Header from './components/Header.js';
 
 const mapStateToProps = state => ({
   redirectTo: state.common.redirectTo
@@ -57,7 +57,8 @@ class App extends Component {
 
 // TODO warning deprecated
 App.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  //router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
