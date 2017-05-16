@@ -3,22 +3,20 @@ import agent from '../agent';
 import { connect } from 'react-redux';
 import { Form, Container } from 'semantic-ui-react';
 
-
 import {
     CREATE_POLL
 } from '../constants/actionTypes';
 
-// const mapStateToProps = state => ({ ...state.forms.createPoll });
+// component only need local state, using setState
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
     onSubmit: (title, options) => {
         const payload = agent.Polls.create(title, options);
-        //console.log(CREATE_POLL);
         dispatch({ type: CREATE_POLL, payload });
     }
 });
-//
+
 class CreatePoll extends React.Component {
     constructor() {
         super();
@@ -30,8 +28,6 @@ class CreatePoll extends React.Component {
 
     submitForm = () => ev => {
         ev.preventDefault();
-        //console.log("submit");
-        // use the agent
         this.props.onSubmit(this.state.title, this.state.options);
     }
 
@@ -40,7 +36,6 @@ class CreatePoll extends React.Component {
     }
 
     changeOption = i => ev => {
-        //console.log('changeOption', i);
         const o = this.state.options;
         this.setState({ options: [...o.slice(0, i), ev.target.value, ...o.slice(i + 1)] });
     }
@@ -50,7 +45,6 @@ class CreatePoll extends React.Component {
     }
 
     removeOption = (i) => () => {
-        //console.log('removeOption', i);
         const o = this.state.options;
         this.setState({ options: [...o.slice(0, i), ...o.slice(i + 1)] });
     }
@@ -69,7 +63,6 @@ class CreatePoll extends React.Component {
                             onClick={this.removeOption(i)}
                         >X</Form.Button>
                     }
-
                 </Form.Group>
             );
         });

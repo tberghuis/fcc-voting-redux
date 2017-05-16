@@ -23,16 +23,12 @@ const mapDispatchToProps = dispatch => ({
 
 class PollList extends React.Component {
 
-
+    // this probably should have been passed down as a prop
     handleDelete = (pollId) => () => {
-        // console.log(pollId);
         this.props.deletePoll(pollId);
     }
 
-
     render() {
-
-        // console.log('polls', this.props.polls);
         return (
             <Container text>
                 {this.props.polls.map((poll, i) => {

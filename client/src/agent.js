@@ -3,6 +3,7 @@ import _superagent from 'superagent';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
+// populated during build .REACT_APP_
 const apiRoot = process.env.REACT_APP_API_BASE_URL;
 
 const responseBody = res => res.body;
@@ -29,8 +30,6 @@ const Auth = {
   current: () =>
     requests.get('/user'),
   login: (email, password) => {
-    // console.log(email, password);
-
     return requests.post('/auth/login', { user: { email, password } })
   },
   register: (username, email, password) =>
@@ -49,7 +48,6 @@ const Polls = {
   vote: (id, optionIndex, newOption) =>
     requests.post('/polls/' + id, { optionIndex, newOption })
 };
-
 
 export default {
   Auth,

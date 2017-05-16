@@ -21,7 +21,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: REDIRECT })
 });
 
-
 class App extends Component {
 
   componentWillReceiveProps(nextProps) {

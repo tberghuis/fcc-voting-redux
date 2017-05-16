@@ -1,7 +1,6 @@
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
-// import { Table } from 'semantic-ui-react';
 
 import PollList from './PollList';
 
@@ -27,7 +26,6 @@ class MyPolls extends React.Component {
     }
 
     render() {
-        //console.log('polls', this.props.polls);
         return (
             <div>
                 My Polls

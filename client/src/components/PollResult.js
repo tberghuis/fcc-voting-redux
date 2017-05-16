@@ -2,7 +2,6 @@ import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
 import { Table } from 'semantic-ui-react';
-// import Measure from 'react-measure';
 
 import {
     GET_POLL
@@ -14,12 +13,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     getPoll: (id) => {
-        //use promise middleware
         const payload = agent.Polls.get(id);
         dispatch({ type: GET_POLL, payload });
     }
 });
-//
+
 class PollResult extends React.Component {
 
     componentWillMount() {
@@ -36,7 +34,6 @@ class PollResult extends React.Component {
 
         const getVotesIndex = () => {
             return poll.votes.map((numVotes, index) => {
-                // let ret={};
                 return { numVotes, index };
             });
         };
@@ -49,7 +46,6 @@ class PollResult extends React.Component {
 
             const maxVotes = sortedVotesIndex[0].numVotes;
 
-            // console.log(maxVotes);
             return sortedVotesIndex
                 .map(voteIndex => {
                     return (

@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => ({
     onUnload: () =>
         dispatch({ type: LOGIN_PAGE_UNLOADED })
 });
-//
+
 class Login extends React.Component {
     constructor() {
         super();

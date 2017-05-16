@@ -9,7 +9,6 @@ import store from './store';
 window._state = store.getState;
 
 import App from './App';
-// import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import CreatePoll from './components/CreatePoll';
@@ -18,8 +17,8 @@ import PollResult from './components/PollResult';
 import AllPolls from './components/AllPolls';
 import MyPolls from './components/MyPolls';
 
-//import 'semantic-ui-css/semantic.min.css';
-import 'semantic-ui-css/semantic.css';
+//import 'semantic-ui-css/semantic.css';
+import 'semantic-ui-css/semantic.min.css';
 
 function requireAuth(nextState, replace) {
   if (!store.getState().common.loggedIn) {
@@ -28,7 +27,6 @@ function requireAuth(nextState, replace) {
     })
   }
 }
-
 
 ReactDOM.render(
   (

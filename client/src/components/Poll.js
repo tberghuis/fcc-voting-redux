@@ -19,12 +19,11 @@ const mapDispatchToProps = dispatch => ({
         dispatch({ type: POLL_VOTE, payload });
     },
     getPoll: (id) => {
-        //use promise middleware
         const payload = agent.Polls.get(id);
         dispatch({ type: GET_POLL, payload });
     }
 });
-//
+
 class Poll extends React.Component {
     constructor() {
         super();
@@ -42,17 +41,11 @@ class Poll extends React.Component {
 
     submitForm = ev => {
         ev.preventDefault();
-
-        // use the agent
-
-        // console.log('submit');
         let poll = this.props.poll;
         this.props.vote(poll.id, this.state.selectedOption, this.state.newOption);
     }
 
-    validateForm = () => {
-
-        // console.log(this.state.selectedOption);
+    isValidForm = () => {
         if (this.state.selectedOption === null) {
             return false;
         }
@@ -112,7 +105,7 @@ class Poll extends React.Component {
                         </List>
                         {poll.userHasVoted && 'You have already voted in this Poll'}
                         <Form.Button
-                            disabled={poll.userHasVoted || !this.validateForm()}>Vote</Form.Button>
+                            disabled={poll.userHasVoted || !this.isValidForm()}>Vote</Form.Button>
                         <Form.Button
                             onClick={() => {
                                 browserHistory.push('/poll/' + poll.id + '/result');
@@ -125,7 +118,5 @@ class Poll extends React.Component {
         );
     }
 }
-
-// as={Link} to={'/poll/'+poll.id+'/result'}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Poll);

@@ -16,15 +16,9 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class Header extends React.Component {
-
-
-
     render() {
-
         // TODO migrate to react router 4 and use active class or something
-
         let activeStyle = { backgroundColor: 'rgba(0, 0, 0, 0.05)' }
-
         return (
             <Menu>
                 <Menu.Item as={IndexLink} to="/" activeStyle={activeStyle} >
