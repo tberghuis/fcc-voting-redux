@@ -50,6 +50,18 @@ class Poll extends React.Component {
         this.props.vote(poll.id, this.state.selectedOption, this.state.newOption);
     }
 
+    validateForm = () => {
+
+        // console.log(this.state.selectedOption);
+        if (this.state.selectedOption === null) {
+            return false;
+        }
+        if (this.state.selectedOption === 'newoption' && this.state.newOption.trim()==='' ) {
+            return false;
+        }
+        return true;
+    }
+
     selectOption = i => () => {
         this.setState({
             selectedOption: i
@@ -100,7 +112,7 @@ class Poll extends React.Component {
                         </List>
                         {poll.userHasVoted && 'You have already voted in this Poll'}
                         <Form.Button
-                            disabled={poll.userHasVoted}>Vote</Form.Button>
+                            disabled={poll.userHasVoted || !this.validateForm()}>Vote</Form.Button>
                         <Form.Button
                             onClick={() => {
                                 browserHistory.push('/poll/' + poll.id + '/result');

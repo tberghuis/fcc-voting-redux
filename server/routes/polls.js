@@ -120,7 +120,7 @@ router.get('/:id', authMiddleware.optional, function (req, res, next) {
 
 router.post('/:id', authMiddleware.optional, function (req, res, next) {
 
-    console.log('post /polls', req.body);
+    // console.log('post /polls', req.body);
 
     // stuff validation for now
     // would need to validate req.body fields in real app
@@ -212,7 +212,7 @@ router.get('/', function (req, res, next) {
 
 router.delete('/:id', authMiddleware.required, function (req, res) {
 
-    console.log('delete');
+    // console.log('delete');
 
     // TODO test that req.user.id is owner of poll
     Poll.remove({

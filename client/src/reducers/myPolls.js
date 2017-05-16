@@ -10,7 +10,7 @@ export default (state = defaultState, action) => {
     switch (action.type) {
         case POLL_DELETE:
             // find out redux remove array
-            console.log('action', action);
+            // console.log('action', action);
             // remove action.id from polls[]._id
             return state.filter((poll)=>{
                 return poll._id !== action.id;

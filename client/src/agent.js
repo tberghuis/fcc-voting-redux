@@ -29,7 +29,7 @@ const Auth = {
   current: () =>
     requests.get('/user'),
   login: (email, password) => {
-    console.log(email, password);
+    // console.log(email, password);
 
     return requests.post('/auth/login', { user: { email, password } })
   },

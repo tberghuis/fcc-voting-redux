@@ -23,7 +23,7 @@ export default (state = defaultState, action) => {
 
 
         case GET_POLL_ALL:
-            console.log(action);
+            // console.log(action);
             return action.payload.polls;
         default:
             return state;

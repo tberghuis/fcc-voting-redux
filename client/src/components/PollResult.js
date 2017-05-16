@@ -49,7 +49,7 @@ class PollResult extends React.Component {
 
             const maxVotes = sortedVotesIndex[0].numVotes;
 
-            console.log(maxVotes);
+            // console.log(maxVotes);
             return sortedVotesIndex
                 .map(voteIndex => {
                     return (

@@ -37,7 +37,7 @@ class Register extends React.Component {
     this.changeUsername = ev => this.props.onChangeUsername(ev.target.value);
     this.submitForm = (username, email, password) => ev => {
       ev.preventDefault();
-      console.log(username, email, password);
+      // console.log(username, email, password);
       this.props.onSubmit(username, email, password);
     }
   }
