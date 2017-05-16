@@ -1,10 +1,10 @@
 https://www.freecodecamp.com/challenges/build-a-voting-app
 
-http://fcc-voting-redux.tomberghuis.com/
+demo http://fcc-voting-redux.tomberghuis.com/
 
-https://github.com/tberghuis/fcc-voting-redux
+repo: https://github.com/tberghuis/fcc-voting-redux
 
-tech: react, react-router, redux, express, mongoose, jwt
+tech: react, react-router, redux, express, mongoose, jwt, semantic-ui
 
 TODO running instructions
 
