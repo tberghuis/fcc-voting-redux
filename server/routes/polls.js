@@ -59,8 +59,6 @@ function getUserIP(req) {
 
 router.get('/my', authMiddleware.required, function (req, res, next) {
 
-    // console.log('get my polls');
-
     let userId = req.user.id;
     Poll.find({ owner: new ObjectId(userId) }).select('title').exec((error, polls) => {
 
@@ -78,11 +76,7 @@ router.get('/my', authMiddleware.required, function (req, res, next) {
     });
 });
 
-
-
 router.get('/:id', authMiddleware.optional, function (req, res, next) {
-
-    // console.log('here');
 
     Poll.findById(req.params.id).exec((error, poll) => {
         if (error) {
@@ -119,8 +113,6 @@ router.get('/:id', authMiddleware.optional, function (req, res, next) {
 
 
 router.post('/:id', authMiddleware.optional, function (req, res, next) {
-
-    // console.log('post /polls', req.body);
 
     // stuff validation for now
     // would need to validate req.body fields in real app
@@ -194,8 +186,6 @@ router.post('/:id', authMiddleware.optional, function (req, res, next) {
 
 router.get('/', function (req, res, next) {
 
-    // console.log('get all polls');
-
     Poll.find({}).select('title').exec((error, polls) => {
         if (error) {
             return res.status(500).json({
@@ -211,8 +201,6 @@ router.get('/', function (req, res, next) {
 });
 
 router.delete('/:id', authMiddleware.required, function (req, res) {
-
-    // console.log('delete');
 
     // TODO test that req.user.id is owner of poll
     Poll.remove({
