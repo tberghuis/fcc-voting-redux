@@ -28,6 +28,10 @@ class CreatePoll extends React.Component {
 
     submitForm = () => ev => {
         ev.preventDefault();
+
+        if (!this.isValidForm()) {
+            return;
+        }
         this.props.onSubmit(this.state.title, this.state.options);
     }
 
@@ -47,6 +51,28 @@ class CreatePoll extends React.Component {
     removeOption = (i) => () => {
         const o = this.state.options;
         this.setState({ options: [...o.slice(0, i), ...o.slice(i + 1)] });
+    }
+
+    isValidForm = () => {
+        if (this.state.title.trim() === '') {
+            return false;
+        }
+
+        // must be a simpler way to write this
+        let optionEmpty = () => {
+            let empty = false;
+            this.state.options.forEach(function (element) {
+                if (element.trim() === '') {
+                    empty = true;
+                }
+            });
+            return empty;
+        }
+
+        if (optionEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     render() {
@@ -83,7 +109,9 @@ class CreatePoll extends React.Component {
                         <Form.Button
                             type="button"
                             onClick={this.addOption}>Add Option</Form.Button>
-                        <Form.Button>Submit</Form.Button>
+                        <Form.Button
+                            disabled={!this.isValidForm()}
+                        >Submit</Form.Button>
                     </Form>
                 </Container>
             </div>

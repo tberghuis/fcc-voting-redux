@@ -41,6 +41,9 @@ class Poll extends React.Component {
 
     submitForm = ev => {
         ev.preventDefault();
+        if (!this.isValidForm()) {
+            return;
+        }
         let poll = this.props.poll;
         this.props.vote(poll.id, this.state.selectedOption, this.state.newOption);
     }
@@ -49,7 +52,7 @@ class Poll extends React.Component {
         if (this.state.selectedOption === null) {
             return false;
         }
-        if (this.state.selectedOption === 'newoption' && this.state.newOption.trim()==='' ) {
+        if (this.state.selectedOption === 'newoption' && this.state.newOption.trim() === '') {
             return false;
         }
         return true;
