@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
         // a promise will just kick off straight away
         // no need to pass payload promise to redux
         // unless i was dealing with returned error from server in reducer
-        dispatch({ type: POLL_DELETE, id });
+        dispatch({ type: POLL_DELETE, payload, id });
     }
 });
 
