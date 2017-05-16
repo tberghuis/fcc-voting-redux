@@ -40,6 +40,7 @@ const Auth = {
 };
 
 const Polls = {
+  delete: id => requests.del('/polls/' + id),
   get: id => requests.get('/polls/' + id),
   all: () => requests.get('/polls'),
   my: () => requests.get('/polls/my'),

@@ -1,12 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Segment, Container } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import agent from '../agent';
+
+import {
+    POLL_DELETE
+} from '../constants/actionTypes';
+
+const mapStateToProps = state => ({
+});
+
+const mapDispatchToProps = dispatch => ({
+    deletePoll: (id) => {
+        const payload = agent.Polls.delete(id); 
+        // a promise will just kick off straight away
+        // no need to pass payload promise to redux
+        // unless i was dealing with returned error from server in reducer
+        dispatch({ type: POLL_DELETE, id });
+    }
+});
 
 class PollList extends React.Component {
 
 
     handleDelete = (pollId) => () => {
-        console.log(pollId);
+        // console.log(pollId);
+        this.props.deletePoll(pollId);
     }
 
 
@@ -23,7 +43,7 @@ class PollList extends React.Component {
                                     {poll.title}
                                 </Link>
                             </h3>
-                            {this.props.delete || true && <button style={{ position: 'absolute', right: 0 }}
+                            {this.props.delete && <button style={{ position: 'absolute', right: 0 }}
                                 onClick={this.handleDelete(poll._id)}>X</button>}
                         </Segment>
 
@@ -34,4 +54,4 @@ class PollList extends React.Component {
     }
 }
 
-export default PollList;
+export default connect(mapStateToProps, mapDispatchToProps)(PollList);

@@ -31,7 +31,7 @@ class MyPolls extends React.Component {
         return (
             <div>
                 My Polls
-                <PollList polls={this.props.polls} />
+                <PollList polls={this.props.polls} delete />
             </div >
         );
     }

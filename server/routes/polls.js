@@ -210,4 +210,18 @@ router.get('/', function (req, res, next) {
     });
 });
 
+router.delete('/:id', authMiddleware.required, function (req, res) {
+
+    console.log('delete');
+
+    // TODO test that req.user.id is owner of poll
+    Poll.remove({
+        _id: req.params.id
+    }, function (err) {
+        if (err)
+            res.send(err);
+        res.status(204).json({ message: 'Successfully deleted' });
+    });
+});
+
 module.exports = router;

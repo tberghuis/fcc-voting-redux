@@ -19,6 +19,8 @@ export const GET_POLL_ALL = 'GET_POLL_ALL';
 export const GET_POLL_MY = 'GET_POLL_MY';
 
 export const POLL_VOTE = 'POLL_VOTE';
+export const POLL_DELETE = 'POLL_DELETE';
+
 
 
 
