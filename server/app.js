@@ -18,14 +18,11 @@ var app = express();
 
 app.use(cors());
 
-// app.use(require('morgan')('dev'));
-// app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-//app.use(require('method-override')());
 
 // this session shit is not even relevant...
 // ok, post a bug report asking why it exists?
+// from realworld.io
 //app.use(session({ secret: process.env.SESSION_SECRET, cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
 
 if (!isProduction) {
@@ -34,10 +31,6 @@ if (!isProduction) {
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
-// if (!isProduction) {
-//   // mongoose.set('debug', true);
-// }
-
 
 require('./models/User');
 require('./models/Poll');
