@@ -1,7 +1,7 @@
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
-import { Form } from 'semantic-ui-react';
+import { Form, Container } from 'semantic-ui-react';
 
 // TODO figure out why react warning for textfield type email and password
 // should just rewrite to use refs
@@ -37,6 +37,9 @@ class Register extends React.Component {
     this.changeUsername = ev => this.props.onChangeUsername(ev.target.value);
     this.submitForm = (username, email, password) => ev => {
       ev.preventDefault();
+      if(!this.isValidForm()){
+        return;
+      }
       this.props.onSubmit(username, email, password);
     }
   }
@@ -45,13 +48,28 @@ class Register extends React.Component {
     this.props.onUnload();
   }
 
+  isValidForm = () => {
+
+    // console.log('username',this.props.username);
+    // console.log('email',this.props.email);
+    // console.log('password',this.props.password);
+
+    if (this.props.username.trim() === ''
+      || this.props.email.trim() === ''
+      || this.props.password.trim() === ''
+    ) {
+      return false;
+    }
+    return true;
+  }
+
   render() {
     const email = this.props.email;
     const password = this.props.password;
     const username = this.props.username;
 
     return (
-      <div>
+      <Container text>
         <h1>Register</h1>
         <Form onSubmit={this.submitForm(username, email, password)}>
           <Form.Input label='Username' placeholder='Username'
@@ -65,9 +83,11 @@ class Register extends React.Component {
             type="password"
             value={this.props.password}
             onChange={this.changePassword} />
-          <Form.Button>Submit</Form.Button>
+          <Form.Button
+            disabled={!this.isValidForm()}
+          >Submit</Form.Button>
         </Form>
-      </div>
+      </Container>
     );
   }
 }

@@ -14,8 +14,10 @@ const getMiddleware = () => {
     }
 }
 
-const initialState = { auth: {} };
+// const initialState = { auth: {
+// } };
 
-const store = createStore(reducer, initialState, getMiddleware());
+//const store = createStore(reducer, initialState, getMiddleware());
+const store = createStore(reducer, getMiddleware());
 
 export default store;

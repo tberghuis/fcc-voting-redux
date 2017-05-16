@@ -9,7 +9,8 @@ import {
 } from '../constants/actionTypes';
 
 const mapStateToProps = state => ({
-    polls: state.allPolls
+    polls: state.allPolls,
+    loggedIn: state.common.loggedIn
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -28,7 +29,11 @@ class AllPolls extends React.Component {
     render() {
         return (
             <div>
-                All Polls
+                All Polls<br />
+                {!this.props.loggedIn &&
+                    'Please register or login if you would like to create a new poll.'
+                }
+
                 <PollList polls={this.props.polls} />
             </div >
         );
