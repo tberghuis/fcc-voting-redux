@@ -1,7 +1,7 @@
 import React from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
-import { Form } from 'semantic-ui-react'
+import { Form, Container } from 'semantic-ui-react'
 
 // TODO figure out why react warning for textfield type email and password
 
@@ -58,7 +58,7 @@ class Login extends React.Component {
         const password = this.props.password;
 
         return (
-            <div>
+            <Container text>
                 <h1>Login</h1>
                 <Form onSubmit={this.submitForm(email, password)}>
                     <Form.Input label='Email' placeholder='Email'
@@ -73,7 +73,7 @@ class Login extends React.Component {
                         disabled={!this.isValidForm()}
                     >Submit</Form.Button>
                 </Form>
-            </div>
+            </Container>
         );
     }
 }
